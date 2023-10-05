@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/', [PostController::class, 'index']);
+
 Route::group(['middleware'=>'auth'],function(){
     Route::group(['prefix'=>'posts/{id}'],function(){
        Route::post('like','LikeController@store')->name('likes.like');
